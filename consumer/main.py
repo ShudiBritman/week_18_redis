@@ -1,5 +1,6 @@
 from redis_connection import get_connection
 from datetime import datetime
+from mongo_connection import MongoConnection
 import json
 
 
@@ -15,3 +16,8 @@ def load_from_redis(queue):
 def add_insertion_time(alert):
     alert['time_insertion'] = datetime.now()
     return alert
+
+def send_to_mongo(alert):
+    mongo = MongoConnection()
+    coll = mongo.get_collection()
+    coll.insert_one(alert)
