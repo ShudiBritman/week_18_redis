@@ -17,12 +17,11 @@ def send_to_redis(queue, event, count):
         'from':'urgency_managment'
         }
     r.lpush(queue, json.dumps(metadata))
-    ttl = 420
     r.hmset(f'message:{metadata["id"]}', {
         'state': json.dumps(event),
         'ttl':ttl
     })
-    r.expire(f'message:{metadata['id']}', ttl)
+    r.expire(f'message:{metadata['id']}', 300)
 
 
 def main():
