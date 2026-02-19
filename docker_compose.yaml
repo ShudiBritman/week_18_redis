@@ -13,3 +13,20 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+  
+  producer:
+    build: ./producer
+    ports:
+      - "8001:8001"
+    environment:
+      MONGO_URI: "mongodb://mongodb:27017"
+
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    depends_on:
+        redis:
+          condition: service_healthy
+    networks: 
+      - backend
+
+
