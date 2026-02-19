@@ -1,13 +1,13 @@
 def classifies_events(event):
-    if event['weapons_count'] > 0:
+    weapons_count= event['weapons_count']
+    distance_from_fence_m = event['distance_from_fence_m']
+    people_count = event['people_count']
+    vehicle_type = event['vehicle_type']
+    if weapons_count > 0:
         return True
-    elif event['distance_from_fence_m'] <= 50:
+    elif distance_from_fence_m <= 50:
         return True
-    elif event['people_count'] >= 8:
+    elif people_count >= 8:
         return True
-    elif event['vehicle_type'] == "truck":
+    elif vehicle_type == "truck":
         return True
-    
-
-
-    
