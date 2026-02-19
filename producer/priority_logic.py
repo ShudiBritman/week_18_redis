@@ -39,9 +39,9 @@ class Classifies:
             else:
                 is_urgency = Classifies.check_combine_condition(event)
                 if is_urgency:
-                    event['priority'] = 'URGENT'
+                    event['priority'] == 'URGENT'
                 else:
-                    event['priority'] = 'NORMAL'
+                    event['priority'] == 'NORMAL'
             events_update.append(event)
         return events_update
 
