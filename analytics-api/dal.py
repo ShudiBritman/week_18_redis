@@ -74,7 +74,10 @@ class Queri:
             return is_exist
         else:
             coll = get_collection()
-            save_in_redis()
+            pipline = []
+            result = list(coll.aggregate(pipline))
+            save_in_redis('distance_distribution', result)
+
 
     @staticmethod
     def dangerous_area():
@@ -83,7 +86,9 @@ class Queri:
             return is_exist
         else:
             coll = get_collection()
-            save_in_redis()
+            pipline = []
+            result = list(coll.aggregate(pipline))
+            save_in_redis('dangerous_area', result)
 
 
     @staticmethod
@@ -93,5 +98,7 @@ class Queri:
             return is_exist
         else:
             coll = get_collection()
-            save_in_redis()
+            pipline = []
+            result = list(coll.aggregate(pipline))
+            save_in_redis('close_and_urgent_alerts', result)
 
