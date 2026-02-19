@@ -21,3 +21,22 @@ def send_to_mongo(alert):
     mongo = MongoConnection()
     coll = mongo.get_collection()
     coll.insert_one(alert)
+
+
+def managment():
+    while True:
+        alert = load_from_redis('queue_urgent')
+        update_alert = add_insertion_time(alert)
+        send_to_mongo(update_alert)
+        if not alert:
+            alert = load_from_redis('queue_normal')
+            update_alert = add_insertion_time(alert)
+            send_to_mongo(update_alert)
+
+
+def main():
+    managment()
+
+
+if __name__ == "__main__":
+    main()
