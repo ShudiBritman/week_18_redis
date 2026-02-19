@@ -11,7 +11,7 @@ def get_connection():
 
 
 def check_if_exist(key):
-    r = get_connection():
+    r = get_connection()
     if r.exists(key):
         return r.get(key)
     return None
