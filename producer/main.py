@@ -28,7 +28,6 @@ def send_to_redis(queue, event, count):
 def main():
     events = load_json()
     updates_events = Classifies.classifies_urgency(events)
-    r = get_connection()
     for event in updates_events:
         urgent_count = 1
         normal_count = 1
