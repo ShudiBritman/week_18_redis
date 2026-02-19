@@ -11,6 +11,7 @@ def classifies_events(event):
         return True
     elif vehicle_type == "truck":
         return True
+    return None
     
 
 def check_combine_condition(event):
@@ -21,4 +22,5 @@ def check_combine_condition(event):
         return True
     elif people_count >= 3 and vehicle_type == "jeep":
         return True
+    return None
     
