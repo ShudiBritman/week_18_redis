@@ -15,3 +15,8 @@ def check_if_exist(key):
     if r.exists(key):
         return r.get(key)
     return None
+
+
+def save_in_redis(key, value):
+    r =get_connection()
+    r.set(key, value, ex=300)
