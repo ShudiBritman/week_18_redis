@@ -1,5 +1,6 @@
 import redis
 import os
+import json
 
 
 REDIS_HOST = os.getenv("REDIS_HOST")
@@ -13,10 +14,14 @@ def get_connection():
 def check_if_exist(key):
     r = get_connection()
     if r.exists(key):
-        return r.get(key)
+        result = r.get(key)
+        data = json.loads(result)
+        return data
     return None
 
 
 def save_in_redis(key, value):
-    r =get_connection()
-    r.set(key, value, ex=300)
+    r = get_connection()
+    json_value = json.dumps(value)
+    json_key = json.dumps(key)
+    r.set(json_key, json_value, ex=300)
